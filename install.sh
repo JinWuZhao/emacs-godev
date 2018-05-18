@@ -39,3 +39,6 @@ cp bin/* /usr/local/bin/
 
 cd /mnt
 rm -rf go
+
+emacs --daemon
+emacsclient -e '(kill-emacs)'
