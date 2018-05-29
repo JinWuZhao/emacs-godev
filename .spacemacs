@@ -46,7 +46,9 @@ values."
             c-c++-enable-clang-support t)
      (go :variables
          go-use-gometalinter
-         go-tab-width 4)
+         go-tab-width 4
+         godoc-at-point-function 'godoc-gogetdoc
+         gofmt-command "goimports")
      semantic
      cscope
      markdown
