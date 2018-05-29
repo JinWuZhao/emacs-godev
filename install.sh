@@ -33,6 +33,9 @@ go get -u -v github.com/rogpeppe/godef
 go get -u -v golang.org/x/tools/cmd/guru
 go get -u -v golang.org/x/tools/cmd/gorename
 go get -u -v golang.org/x/tools/cmd/goimports
+go get -u -v github.com/zmb3/gogetdoc
+go get -u -v github.com/godoctor/godoctor
+go get -u -v github.com/fatih/gomodifytags
 go get -u -v github.com/alecthomas/gometalinter
 ./bin/gometalinter --install --update
 cp bin/* /usr/local/bin/
