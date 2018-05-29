@@ -46,7 +46,6 @@ values."
             c-c++-enable-clang-support t)
      (go :variables
          go-use-gometalinter
-         gofmt-command "goimports"
          go-tab-width 4)
      semantic
      cscope
