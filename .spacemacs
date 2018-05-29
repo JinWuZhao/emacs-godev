@@ -45,9 +45,9 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      (go :variables
-	 go-use-gometalinter t
-	 gofmt-command "goimports"
-	 go-tab-width 4)
+         go-use-gometalinter
+         gofmt-command "goimports"
+         go-tab-width 4)
      semantic
      cscope
      markdown
