@@ -43,9 +43,11 @@ values."
      git
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
-            c-c++-enable-clang-support t)
+            c-c++-enable-clang-support t
+            c-c++-enable-clang-format-on-save t
+            c-c++-enable-rtags-support t)
      (go :variables
-         go-use-gometalinter
+         go-use-gometalinter t
          go-tab-width 4
          godoc-at-point-function 'godoc-gogetdoc
          gofmt-command "goimports")
