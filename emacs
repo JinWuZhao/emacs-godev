@@ -7,5 +7,12 @@ then
 fi
 
 WORKSPACE=`pwd`
+DOWNLOAD='' # some of your useful files
 
-docker run -it --rm -v $WORKSPACE:/root/Documents jinwuzhao/emacs-godev $2
+if [ -d "$DOWNLOAD" ];
+then
+    docker run -it --rm -v $WORKSPACE:/mnt/share/Documents -v $DOWNLOAD:/mnt/share/Download jinwuzhao/emacs-godev $2
+else
+    docker run -it --rm -v $WORKSPACE:/mnt/share/Documents jinwuzhao/emacs-godev $2
+fi
+

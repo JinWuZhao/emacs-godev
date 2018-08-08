@@ -15,7 +15,7 @@ export GOOS="$(go env GOOS)"
 export GOARCH="$(go env GOARCH)"
 export GOHOSTOS="$(go env GOHOSTOS)"
 export GOHOSTARCH="$(go env GOHOSTARCH)"
-wget -O go.tar.gz https://dl.google.com/go/go1.10.2.src.tar.gz
+wget -O go.tar.gz https://dl.google.com/go/go1.10.3.src.tar.gz
 tar -C /usr/local -xzf go.tar.gz
 rm go.tar.gz
 cd /usr/local/go/src
@@ -33,15 +33,18 @@ go get -u -v github.com/rogpeppe/godef
 go get -u -v golang.org/x/tools/cmd/guru
 go get -u -v golang.org/x/tools/cmd/gorename
 go get -u -v golang.org/x/tools/cmd/goimports
-go get -u -v github.com/zmb3/gogetdoc
-go get -u -v github.com/godoctor/godoctor
 go get -u -v github.com/fatih/gomodifytags
-go get -u -v github.com/alecthomas/gometalinter
-./bin/gometalinter --install --update
+go get -u -v golang.org/x/tools/cmd/godoc
+go get -u -v github.com/k0kubun/pp
+go get -u -v github.com/motemen/gore
+go get -u -v github.com/sourcegraph/go-langserver
+go get -u -v github.com/golangci/golangci-lint
+
 cp bin/* /usr/local/bin/
 
 cd /mnt
 rm -rf go
+rm -rf ~/.cache
 
 emacs --daemon
 emacsclient -e '(kill-emacs)'
