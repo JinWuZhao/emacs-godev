@@ -114,7 +114,7 @@ re-downloaded in order to locate PACKAGE."
   (interactive)
   (go-gopath-load nil))
 
-(go-gopath-autoload)
+(add-hook 'dired-mode-hook #'go-gopath-autoload)
 
 (require 'go-mode)
 (set-variable 'gofmt-command "goimports")
