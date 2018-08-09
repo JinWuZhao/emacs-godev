@@ -83,6 +83,7 @@ re-downloaded in order to locate PACKAGE."
 (setq aw-dispatch-always nil)
 
 (require 'f)
+(require 'subr-x)
 ;; load gopath config file
 (defun go-gopath-load (name)
   (interactive
@@ -93,7 +94,7 @@ re-downloaded in order to locate PACKAGE."
   (let ((filename (if name name (concat default-directory ".gopath"))))
     (if (f-exists? filename)
         (let ((contents (f-read-text filename 'utf-8)))
-          (setenv "GOPATH" contents))
+          (setenv "GOPATH" (string-trim-right (shell-command-to-string (concat "echo " contents)) "\n")))
       nil))
   nil)
 ;; save gopath config file
