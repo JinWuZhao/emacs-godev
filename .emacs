@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lsp-go company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode company-lsp counsel yasnippet-snippets go-mode ace-window magit)))
+    (company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode company-lsp counsel yasnippet-snippets go-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -47,6 +47,8 @@ re-downloaded in order to locate PACKAGE."
   t)
 
 (require-packages package-selected-packages)
+
+(add-to-list 'load-path (expand-file-name (locate-user-emacs-file "custom")))
 
 (display-time)
 
