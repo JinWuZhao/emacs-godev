@@ -125,7 +125,11 @@ re-downloaded in order to locate PACKAGE."
 (require 'lsp-go)
 (add-hook 'go-mode-hook #'lsp-go-enable)
 (add-hook 'go-mode-hook #'company-mode-on)
-(add-hook 'before-save-hook #'lsp-format-buffer)
+
+(defun go-mode-before-save-hook ()
+  (when (eq major-mode 'go-mode)
+    (gofmt)))
+(add-hook 'before-save-hook #'go-mode-before-save-hook)
 
 (require 'company-lsp)
 (push 'company-lsp company-backends)
