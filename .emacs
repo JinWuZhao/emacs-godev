@@ -153,3 +153,6 @@ re-downloaded in order to locate PACKAGE."
 (zone-when-idle 60)
 
 (setq confirm-kill-emacs 'yes-or-no-p)
+
+(require 'bookmark)
+(setq bookmark-default-file "/mnt/share/Documents/.bookmark")
