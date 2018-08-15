@@ -148,3 +148,8 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "C-c r") 'counsel-rg)
 (global-set-key (kbd "C-c i") 'counsel-imenu)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+(require 'zone)
+(zone-when-idle 60)
+
+(setq confirm-kill-emacs 'yes-or-no-p)
