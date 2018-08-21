@@ -3,7 +3,6 @@ language: bash
 services:
 - docker
 before_install:
-- docker pull jinwuzhao/emacs:1.0.1
 - docker build -t jinwuzhao/emacs-godev .
 deploy:
   provider: script
