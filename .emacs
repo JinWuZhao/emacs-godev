@@ -63,6 +63,7 @@ re-downloaded in order to locate PACKAGE."
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
 
+(setq auto-save-visited-interval 1)
 (auto-save-visited-mode t)
 
 (global-set-key (kbd "C-c .") 'highlight-symbol-at-point)
