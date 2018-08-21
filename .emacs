@@ -63,12 +63,14 @@ re-downloaded in order to locate PACKAGE."
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
 
+(auto-save-visited-mode t)
+
 (global-set-key (kbd "C-c .") 'highlight-symbol-at-point)
 (global-set-key (kbd "C-c ,") 'unhighlight-regexp)
 
-(global-set-key (kbd "C-c C-c") 'comment-region)
-(global-set-key (kbd "C-c C-k") 'uncomment-region)
-(global-set-key (kbd "C-c C-l") 'comment-line)
+(global-set-key (kbd "C-c /") 'comment-region)
+(global-set-key (kbd "C-c k") 'uncomment-region)
+(global-set-key (kbd "C-c l") 'comment-line)
 
 (global-set-key (kbd "C-c g") 'magit-status)
 
@@ -157,3 +159,6 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'bookmark)
 (setq bookmark-default-file "/mnt/share/Documents/.bookmark")
+
+(push 'company-restclient company-backends)
+(add-hook 'restclient-mode-hook #'company-mode-on)
