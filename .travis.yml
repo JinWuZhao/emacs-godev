@@ -3,13 +3,13 @@ language: bash
 services:
 - docker
 before_install:
-- docker pull jinwuzhao/emacs
+- docker pull jinwuzhao/emacs:1.0.1
 - docker build -t jinwuzhao/emacs-godev .
 deploy:
   provider: script
   script: bash docker_push
   on:
-    branch: master
+    tags: true
 env:
   global:
   - secure: Iufc2YbcZGAI6mTT0kOtITQVKsKleR5pMivcGhhpxuDKf527e6iOVMUONvV+hXYTylek4eRtjjBbZNKPeWXU9j8PqwkA5S12jE4rwf0gxzj3Ew3vAcPgGrDJm+uFstOYr64oLo9WaGMDmsclubCuDfXpb8BQ3sHV/PK3HmE+tR6rgARcUMmyQLp6q8IYCP62sbF7cWVTxxcmkuPJ3jQNvsHKCMtGtzYn8WL0paGqXoRYMY09+cqBUkhA6M7vKOg7wigX5sDbsHRPJcTzBxPDpCLw3go7e9TSnXufr1F7JnMdYAll1HA69mnYJO9k2tAC/iN+1PkjXXhI4lfm3hmI+Lu2xsnrwSGd8UmorVaCX2f/7NR8iL835IoVEsiPzwX1ryItaNuyQ55cendiNwflu70KPGBERVOpJ7cwIapTVz2bn6KkBijc8SOGND6jf2x1Cub+H8ipvL0dsFPYuFn+hUklJQ8jUy9Kaq2XrSZRJ7pt2RiUlvJTaqGmMEqfwSYdjyEXYiqfB0qA8Hkz6kdJVSzR16vGPjkbhSVuhgCCsGCd9p/iieBCrvJ15dDQb5RrDzIWFNfCE8S+wG7KyBe761iyo3W7O0xRR0Cx4e9doVVgD5xI9NbHrnQtQDlsfEaOYTz5wf9SKs9h1gd7fY194EEZ858qi1DCbhUjfrPXlyA=
