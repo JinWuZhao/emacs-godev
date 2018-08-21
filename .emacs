@@ -129,10 +129,10 @@ re-downloaded in order to locate PACKAGE."
 (add-hook 'go-mode-hook #'lsp-go-enable)
 (add-hook 'go-mode-hook #'company-mode-on)
 
-(defun go-mode-before-save-hook ()
+(defun go-mode-fmt ()
   (when (eq major-mode 'go-mode)
     (gofmt)))
-(add-hook 'before-save-hook #'go-mode-before-save-hook)
+(global-set-key (kbd "C-c f") 'go-mode-fmt)
 
 (require 'company-lsp)
 (push 'company-lsp company-backends)
