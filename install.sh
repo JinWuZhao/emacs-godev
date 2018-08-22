@@ -2,6 +2,7 @@
 
 apk --no-cache add go
 apk --no-cache add ca-certificates
+apk --no-cache add mysql-client
 
 if [ ! -e /etc/nsswitch.conf ]
 then
