@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode company-lsp counsel yasnippet-snippets go-mode ace-window magit)))
+    (real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode company-lsp counsel yasnippet-snippets go-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -63,8 +63,9 @@ re-downloaded in order to locate PACKAGE."
     (highlight-parentheses-mode t)))
 (global-highlight-parentheses-mode t)
 
-(setq auto-save-visited-interval 1)
-(auto-save-visited-mode t)
+(require 'real-auto-save)
+(setq real-auto-save-interval 1)
+(add-hook 'prog-mode-hook 'real-auto-save-mode)
 
 (global-set-key (kbd "C-c .") 'highlight-symbol-at-point)
 (global-set-key (kbd "C-c ,") 'unhighlight-regexp)
@@ -130,6 +131,7 @@ re-downloaded in order to locate PACKAGE."
 (add-hook 'go-mode-hook #'company-mode-on)
 
 (defun go-mode-fmt ()
+  (interactive)
   (when (eq major-mode 'go-mode)
     (gofmt)))
 (global-set-key (kbd "C-c f") 'go-mode-fmt)
