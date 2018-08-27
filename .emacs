@@ -156,7 +156,7 @@ re-downloaded in order to locate PACKAGE."
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 (require 'zone)
-(zone-when-idle 60)
+(zone-when-idle 300)
 
 (setq confirm-kill-emacs 'yes-or-no-p)
 
