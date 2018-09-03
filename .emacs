@@ -153,6 +153,7 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "C-c r") 'counsel-rg)
 (global-set-key (kbd "C-c i") 'counsel-imenu)
 (global-set-key (kbd "C-c b") 'counsel-ibuffer)
+(global-set-key (kbd "C-c j") 'counsel-file-jump)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
 (require 'zone)
