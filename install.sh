@@ -15,7 +15,7 @@ export GOOS="$(go env GOOS)"
 export GOARCH="$(go env GOARCH)"
 export GOHOSTOS="$(go env GOHOSTOS)"
 export GOHOSTARCH="$(go env GOHOSTARCH)"
-wget -O go.tar.gz https://dl.google.com/go/go1.10.3.src.tar.gz
+wget -O go.tar.gz https://dl.google.com/go/go1.11.1.src.tar.gz
 tar -C /usr/local -xzf go.tar.gz
 rm go.tar.gz
 cd /usr/local/go/src
