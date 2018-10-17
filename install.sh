@@ -1,7 +1,11 @@
 #!/bin/sh
 
+pacman -Syu --noconfirm
+
 pacman -S --noconfirm go
-pacman -S --noconfirm mysql-client
+pacman -S --noconfirm mysql
+
+pacman -Scc --noconfirm
 
 go version
 
