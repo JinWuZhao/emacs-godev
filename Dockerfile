@@ -1,4 +1,4 @@
-FROM jinwuzhao/emacs:1.0.5
+FROM jinwuzhao/emacs:archlinux_0.1.4
 
 ENV TERM=xterm-256color \
     LANG=en_US.UTF-8 \
