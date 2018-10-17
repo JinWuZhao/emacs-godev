@@ -1,4 +1,5 @@
 #!/bin/bash
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+docker tag jinwuzhao/emacs-godev jinwuzhao/emacs-godev:archlinux
 docker push jinwuzhao/emacs-godev:archlinux
 docker logout
