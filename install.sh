@@ -1,5 +1,8 @@
 #!/bin/sh
 
+apk update
+apk upgrade
+
 apk --no-cache add go
 apk --no-cache add mysql-client
 

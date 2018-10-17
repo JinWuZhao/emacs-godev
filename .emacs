@@ -51,6 +51,7 @@ re-downloaded in order to locate PACKAGE."
 (add-to-list 'load-path (expand-file-name (locate-user-emacs-file "custom")))
 
 (display-time)
+(setq explicit-shell-file-name "/bin/bash")
 
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
