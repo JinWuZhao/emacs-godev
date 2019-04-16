@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (xclip color-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode company-lsp counsel yasnippet-snippets go-mode ace-window magit)))
+    (xclip color-theme-modern smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -23,7 +23,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
 
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
@@ -52,6 +51,9 @@ re-downloaded in order to locate PACKAGE."
 
 (display-time)
 (setq explicit-shell-file-name "/bin/bash")
+
+(load-theme 'calm-forest t t)
+(enable-theme 'calm-forest)
 
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
@@ -126,10 +128,6 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'go-mode)
 (set-variable 'gofmt-command "goimports")
-(add-hook 'go-mode-hook #'flycheck-mode)
-(require 'lsp-go)
-(add-hook 'go-mode-hook #'lsp-go-enable)
-(add-hook 'go-mode-hook #'company-mode-on)
 
 (defun go-mode-fmt ()
   (interactive)
@@ -137,16 +135,14 @@ re-downloaded in order to locate PACKAGE."
     (gofmt)))
 (global-set-key (kbd "C-c f") 'go-mode-fmt)
 
-(require 'company-lsp)
-(push 'company-lsp company-backends)
-
-(require 'yasnippet)
-(yas-global-mode 1)
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 (global-set-key (kbd "C-c C-s") 'swiper)
+(global-set-key (kbd "C-s") 'swiper-isearch)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -165,5 +161,10 @@ re-downloaded in order to locate PACKAGE."
 (require 'bookmark)
 (setq bookmark-default-file "/mnt/share/Documents/.bookmark")
 
+(require 'company-restclient)
 (push 'company-restclient company-backends)
 (add-hook 'restclient-mode-hook #'company-mode-on)
+
+(require 'eglot)
+(define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+(add-hook 'go-mode-hook #'eglot-ensure)
