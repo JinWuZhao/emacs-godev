@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (xclip color-theme-modern smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
+    (xclip color-theme-modern smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -128,6 +128,7 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'go-mode)
 (set-variable 'gofmt-command "goimports")
+(add-hook 'go-mode-hook #'flycheck-mode)
 
 (defun go-mode-fmt ()
   (interactive)
