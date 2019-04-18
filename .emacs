@@ -167,5 +167,6 @@ re-downloaded in order to locate PACKAGE."
 (add-hook 'restclient-mode-hook #'company-mode-on)
 
 (require 'eglot)
+(add-to-list 'eglot-server-programs '(go-mode . ("gopls")))
 (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
 (add-hook 'go-mode-hook #'eglot-ensure)
