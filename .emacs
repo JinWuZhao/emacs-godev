@@ -136,8 +136,8 @@ re-downloaded in order to locate PACKAGE."
     (gofmt)))
 (global-set-key (kbd "C-c f") 'go-mode-fmt)
 
-;; (require 'yasnippet)
-;; (yas-global-mode 1)
+(require 'yasnippet)
+(yas-global-mode 1)
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
