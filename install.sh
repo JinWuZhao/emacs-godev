@@ -22,8 +22,8 @@ go get -u -v golang.org/x/tools/cmd/goimports
 go get -u -v github.com/fatih/gomodifytags
 go get -u -v golang.org/x/tools/cmd/godoc
 go get -u -v github.com/k0kubun/pp
-go get -u -v github.com/motemen/gore
-go get -u -v github.com/sourcegraph/go-langserver
+go get -u -v github.com/motemen/gore/cmd/gore
+go get -u -v golang.org/x/tools/cmd/gopls
 go get -u -v github.com/golangci/golangci-lint/cmd/golangci-lint
 
 cp bin/* /usr/local/bin/

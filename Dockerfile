@@ -1,4 +1,4 @@
-FROM jinwuzhao/emacs:archlinux_0.1.4
+FROM jinwuzhao/emacs:archlinux_1.0.1
 
 ENV TERM=xterm-256color \
     LANG=en_US.UTF-8 \
@@ -11,7 +11,6 @@ WORKDIR /root
 
 COPY ./install.sh /usr/local/bin/install_toolchains.sh
 COPY ./.emacs .
-COPY ./.emacs.d ./.emacs.d
 
 RUN chmod +x /usr/local/bin/install_toolchains.sh
 RUN install_toolchains.sh
