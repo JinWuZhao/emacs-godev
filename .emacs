@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (color-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode company-lsp counsel yasnippet-snippets go-mode ace-window magit)))
+    (xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -23,7 +23,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
 
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
@@ -50,8 +49,15 @@ re-downloaded in order to locate PACKAGE."
 
 (add-to-list 'load-path (expand-file-name (locate-user-emacs-file "custom")))
 
+(tool-bar-mode 0)
+(menu-bar-mode 0)
+(scroll-bar-mode 0)
+(set-default-font "DejaVu Sans Mono Book 12")
+
 (display-time)
 (setq explicit-shell-file-name "/bin/bash")
+
+(load-theme 'solarized-dark t)
 
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
@@ -127,18 +133,12 @@ re-downloaded in order to locate PACKAGE."
 (require 'go-mode)
 (set-variable 'gofmt-command "goimports")
 (add-hook 'go-mode-hook #'flycheck-mode)
-(require 'lsp-go)
-(add-hook 'go-mode-hook #'lsp-go-enable)
-(add-hook 'go-mode-hook #'company-mode-on)
 
 (defun go-mode-fmt ()
   (interactive)
   (when (eq major-mode 'go-mode)
     (gofmt)))
 (global-set-key (kbd "C-c f") 'go-mode-fmt)
-
-(require 'company-lsp)
-(push 'company-lsp company-backends)
 
 (require 'yasnippet)
 (yas-global-mode 1)
@@ -147,6 +147,7 @@ re-downloaded in order to locate PACKAGE."
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 (global-set-key (kbd "C-c C-s") 'swiper)
+(global-set-key (kbd "C-s") 'swiper-isearch)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -157,13 +158,16 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "C-c j") 'counsel-file-jump)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
-(require 'zone)
-(zone-when-idle 300)
-
 (setq confirm-kill-emacs 'yes-or-no-p)
 
 (require 'bookmark)
 (setq bookmark-default-file "/mnt/share/Documents/.bookmark")
 
+(require 'company-restclient)
 (push 'company-restclient company-backends)
 (add-hook 'restclient-mode-hook #'company-mode-on)
+
+(require 'eglot)
+(add-to-list 'eglot-server-programs '(go-mode . ("gopls")))
+(define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+(add-hook 'go-mode-hook #'eglot-ensure)
