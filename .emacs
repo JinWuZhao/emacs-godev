@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
+    (pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -53,6 +53,11 @@ re-downloaded in order to locate PACKAGE."
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
 (set-default-font "DejaVu Sans Mono Book 12")
+
+(require 'pyim)
+(require 'pyim-basedict)
+(pyim-basedict-enable)
+(setq default-input-method "pyim")
 
 (display-time)
 (setq explicit-shell-file-name "/bin/bash")
