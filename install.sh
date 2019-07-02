@@ -4,8 +4,6 @@ pacman -Syu --noconfirm
 
 pacman -S --noconfirm go
 pacman -S --noconfirm mysql
-pacman -S --noconfirm adobe-source-han-sans-cn-fonts
-pacman -S --noconfirm adobe-source-han-sans-tw-fonts
 
 pacman -Scc --noconfirm
 
