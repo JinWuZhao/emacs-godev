@@ -64,6 +64,13 @@ re-downloaded in order to locate PACKAGE."
 
 (load-theme 'solarized-dark t)
 
+(require 'awesome-tab)
+(awesome-tab-mode t)
+(global-set-key (kbd "M-n") 'awesome-tab-forward)
+(global-set-key (kbd "M-p") 'awesome-tab-backward)
+(global-set-key (kbd "C-c n") 'awesome-tab-forward-group)
+(global-set-key (kbd "C-c p") 'awesome-tab-backward-group)
+
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
 (electric-pair-mode t)
