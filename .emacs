@@ -70,7 +70,9 @@ re-downloaded in order to locate PACKAGE."
                 :weight 'normal
                 :slant 'normal
                 :size 13.5)))
-  (global-emojify-mode))
+  (require 'emojify)
+  (emojify-download-emoji "emojione-v2.2.6-22")
+  (set-variable 'emojify-emoji-set "emojione-v2.2.6-22"))
 
 (if window-system
     (gui-setup)
