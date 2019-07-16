@@ -1,12 +1,7 @@
 ;;; -*- lexical-binding:t -*-
 
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-)
+(setq package-archives '(("gnu" . "http://mirrors.cloud.tencent.com/elpa/gnu/") ("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/") ("melpa-stable" . "http://mirrors.cloud.tencent.com/elpa/melpa-stable/")))
 (package-initialize)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
