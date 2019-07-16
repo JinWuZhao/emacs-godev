@@ -15,7 +15,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
+    (youdao-dictionary emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -96,20 +96,21 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'awesome-tab)
 (awesome-tab-mode t)
-(global-set-key (kbd "C-c C-1") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-2") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-3") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-4") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-5") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-6") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-7") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-8") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-9") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c C-0") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c t f") 'awesome-tab-forward)
-(global-set-key (kbd "C-c t b") 'awesome-tab-backward)
-(global-set-key (kbd "C-c t n") 'awesome-tab-forward-group)
-(global-set-key (kbd "C-c t p") 'awesome-tab-backward-group)
+(global-set-key (kbd "C-c 1") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c 2") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c 3") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c 4") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c 5") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c 6") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c 7") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c 8") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c 9") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c 0") 'awesome-tab-select-visible-tab)
+(global-set-key (kbd "C-c h") 'awesome-tab-forward)
+(global-set-key (kbd "C-c ;") 'awesome-tab-backward)
+(global-set-key (kbd "C-c n") 'awesome-tab-forward-group)
+(global-set-key (kbd "C-c p") 'awesome-tab-backward-group)
+(global-set-key (kbd "C-c t") 'awesome-tab-counsel-switch-group)
 
 (setq-default indent-tabs-mode nil)
 (setq default-tab-width 4)
@@ -146,6 +147,36 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "M-o") 'ace-window)
 (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
 (setq aw-dispatch-always nil)
+
+(require 'youdao-dictionary)
+(global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point)
+
+(require 'yasnippet)
+(yas-global-mode 1)
+
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key (kbd "C-c C-s") 'swiper)
+(global-set-key (kbd "C-s") 'swiper-isearch)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-c m") 'counsel-bookmark)
+(global-set-key (kbd "C-c r") 'counsel-rg)
+(global-set-key (kbd "C-c i") 'counsel-imenu)
+(global-set-key (kbd "C-c b") 'counsel-ibuffer)
+(global-set-key (kbd "C-c j") 'counsel-file-jump)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+(setq confirm-kill-emacs 'yes-or-no-p)
+
+(require 'bookmark)
+(setq bookmark-default-file "/mnt/share/Documents/.bookmark")
+
+(require 'company-restclient)
+(push 'company-restclient company-backends)
+(add-hook 'restclient-mode-hook #'company-mode-on)
 
 (require 'f)
 (require 'subr-x)
@@ -191,33 +222,6 @@ re-downloaded in order to locate PACKAGE."
   (when (eq major-mode 'go-mode)
     (gofmt)))
 (global-set-key (kbd "C-c f") 'go-mode-fmt)
-
-(require 'yasnippet)
-(yas-global-mode 1)
-
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
-(global-set-key (kbd "C-c C-s") 'swiper)
-(global-set-key (kbd "C-s") 'swiper-isearch)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "C-c m") 'counsel-bookmark)
-(global-set-key (kbd "C-c r") 'counsel-rg)
-(global-set-key (kbd "C-c i") 'counsel-imenu)
-(global-set-key (kbd "C-c b") 'counsel-ibuffer)
-(global-set-key (kbd "C-c j") 'counsel-file-jump)
-(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-
-(setq confirm-kill-emacs 'yes-or-no-p)
-
-(require 'bookmark)
-(setq bookmark-default-file "/mnt/share/Documents/.bookmark")
-
-(require 'company-restclient)
-(push 'company-restclient company-backends)
-(add-hook 'restclient-mode-hook #'company-mode-on)
 
 (require 'eglot)
 (add-to-list 'eglot-server-programs '(go-mode . ("gopls")))
