@@ -175,6 +175,9 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'company-tabnine)
 (add-to-list 'company-backends #'company-tabnine)
+(set-variable 'company-tabnine-binaries-folder
+              (locate-user-emacs-file
+               (file-name-nondirectory company-tabnine-binaries-folder)))
 (if (not (file-exists-p company-tabnine-binaries-folder))
     (company-tabnine-install-binary))
 
