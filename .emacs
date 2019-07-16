@@ -10,7 +10,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (youdao-dictionary emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
+    (company-tabnine youdao-dictionary emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
  '(zoom-size (quote (0.618 . 0.618))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -101,8 +101,8 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "C-c 8") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "C-c 9") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "C-c 0") 'awesome-tab-select-visible-tab)
-(global-set-key (kbd "C-c h") 'awesome-tab-forward)
-(global-set-key (kbd "C-c ;") 'awesome-tab-backward)
+(global-set-key (kbd "C-c ;") 'awesome-tab-forward)
+(global-set-key (kbd "C-c h") 'awesome-tab-backward)
 (global-set-key (kbd "C-c n") 'awesome-tab-forward-group)
 (global-set-key (kbd "C-c p") 'awesome-tab-backward-group)
 (global-set-key (kbd "C-c t") 'awesome-tab-counsel-switch-group)
@@ -173,6 +173,12 @@ re-downloaded in order to locate PACKAGE."
 (push 'company-restclient company-backends)
 (add-hook 'restclient-mode-hook #'company-mode-on)
 
+(require 'company-tabnine)
+(add-to-list 'company-backends #'company-tabnine)
+(company-tabnine-install-binary)
+
+(setq company-show-numbers t)
+
 (require 'f)
 (require 'subr-x)
 ;; load gopath config file
@@ -210,7 +216,6 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'go-mode)
 (set-variable 'gofmt-command "goimports")
-(add-hook 'go-mode-hook #'flycheck-mode)
 
 (defun go-mode-fmt ()
   (interactive)
