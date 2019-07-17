@@ -144,8 +144,8 @@ re-downloaded in order to locate PACKAGE."
 (setq aw-dispatch-always nil)
 
 (require 'ace-jump-mode)
-(global-set-key (kbd "C-c SPC") 'ace-jump-word-mode)
-(global-set-key (kbd "C-c C-SPC") 'ace-jump-line-mode)
+(global-set-key (kbd "M--") 'ace-jump-word-mode)
+(global-set-key (kbd "C-M--") 'ace-jump-line-mode)
 
 (global-set-key (kbd "C-c o") 'project-find-file)
 
@@ -237,3 +237,5 @@ re-downloaded in order to locate PACKAGE."
 (add-to-list 'eglot-server-programs '(go-mode . ("gopls")))
 (define-key eglot-mode-map (kbd "C-c d") 'eglot-help-at-point)
 (add-hook 'go-mode-hook #'eglot-ensure)
+
+(add-hook 'go-mode-hook #'company-mode-on)
