@@ -161,7 +161,6 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-s") 'swiper-isearch)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-c m") 'counsel-bookmark)
 (global-set-key (kbd "C-c r") 'counsel-rg)
@@ -169,6 +168,12 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "C-c b") 'counsel-ibuffer)
 (global-set-key (kbd "C-c j") 'counsel-file-jump)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+(require 'smex)
+(smex-initialize)
+
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 (setq confirm-kill-emacs 'yes-or-no-p)
 
