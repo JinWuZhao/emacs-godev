@@ -1,32 +1,15 @@
 #!/bin/sh
 
-apk update
-apk upgrade
+pacman -Syu --noconfirm
 
-apk --no-cache add go
-apk --no-cache add mysql-client
+pacman -S --noconfirm go
+pacman -S --noconfirm mysql
 
-if [ ! -e /etc/nsswitch.conf ]
-then
-    echo 'hosts: files dns' > /etc/nsswitch.conf
-fi
+pacman -Scc --noconfirm
 
-cd /mnt
-
-export GOROOT_BOOTSTRAP="$(go env GOROOT)"
-export GOOS="$(go env GOOS)"
-export GOARCH="$(go env GOARCH)"
-export GOHOSTOS="$(go env GOHOSTOS)"
-export GOHOSTARCH="$(go env GOHOSTARCH)"
-wget -O go.tar.gz https://dl.google.com/go/go1.12.5.src.tar.gz
-tar -C /usr/local -xzf go.tar.gz
-rm go.tar.gz
-cd /usr/local/go/src
-./make.bash
-apk del go
-ln -s /usr/local/go/bin/* /usr/local/bin/
 go version
 
+cd /mnt
 mkdir /mnt/go
 cd /mnt/go
 export GOPATH=`pwd`
@@ -48,6 +31,8 @@ cp bin/* /usr/local/bin/
 cd /mnt
 rm -rf go
 rm -rf ~/.cache
+
+curl -o /root/.emacs.d/custom/awesome-tab.el https://raw.githubusercontent.com/manateelazycat/awesome-tab/master/awesome-tab.el
 
 emacs --daemon
 emacsclient -e '(kill-emacs)'
