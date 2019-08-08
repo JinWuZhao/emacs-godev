@@ -18,8 +18,8 @@ CONFIGS='' # some of your useful files
 
 if [ -d "$CONFIGS" ];
 then
-    docker run -it --rm -v $WORKSPACE:/mnt/share/Documents -v $CONFIGS:/mnt/share/configs jinwuzhao/emacs-godev:archlinux $@
+    docker run -it --rm -v $WORKSPACE:/mnt/share/Documents -v $CONFIGS:/mnt/share/configs jinwuzhao/emacs-godev $@
 else
-    docker run -it --rm -v $WORKSPACE:/mnt/share/Documents jinwuzhao/emacs-godev:archlinux $@
+    docker run -it --rm -v $WORKSPACE:/mnt/share/Documents jinwuzhao/emacs-godev $@
 fi
 
