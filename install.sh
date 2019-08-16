@@ -4,8 +4,14 @@ pacman -Syu --noconfirm
 
 pacman -S --noconfirm go
 pacman -S --noconfirm mysql
+pacman -S --noconfirm npm
+pacman -S --noconfirm flex
+pacman -S --noconfirm bison
+pacman -S --noconfirm protobuf
 
 pacman -Scc --noconfirm
+
+npm install -g gitbook-cli
 
 go version
 
