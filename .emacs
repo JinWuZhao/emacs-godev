@@ -130,6 +130,8 @@ re-downloaded in order to locate PACKAGE."
 (global-set-key (kbd "C-c l") 'comment-line)
 
 (global-set-key (kbd "C-c g") 'magit-status)
+(require 'magit)
+(set-variable 'magit-process-yes-or-no-prompt-regexp "(\\(yes\\)/\\(no\\)/\\[fingerprint\\])\\? $")
 
 (require 'zoom)
 (global-set-key (kbd "M-+") 'zoom)
