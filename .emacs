@@ -1,7 +1,8 @@
 ;;; -*- lexical-binding:t -*-
 
 (require 'package)
-(setq package-archives '(("gnu" . "http://mirrors.cloud.tencent.com/elpa/gnu/") ("melpa" . "http://mirrors.cloud.tencent.com/elpa/melpa/") ("melpa-stable" . "http://mirrors.cloud.tencent.com/elpa/melpa-stable/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -91,6 +92,8 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'awesome-tab)
 (awesome-tab-mode t)
+(setq awesome-tab-height 120)
+(setq awesome-tab-active-bar-height 20)
 (global-set-key (kbd "M-1") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "M-2") 'awesome-tab-select-visible-tab)
 (global-set-key (kbd "M-3") 'awesome-tab-select-visible-tab)
