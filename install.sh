@@ -29,10 +29,11 @@ go get -u -v github.com/fatih/gomodifytags
 go get -u -v golang.org/x/tools/cmd/godoc
 go get -u -v github.com/k0kubun/pp
 go get -u -v github.com/motemen/gore/cmd/gore
-go get -u -v golang.org/x/tools/cmd/gopls
-go get -u -v github.com/golangci/golangci-lint/cmd/golangci-lint
+go get -u -v golang.org/x/tools/gopls
 
 cp bin/* /usr/local/bin/
+
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /usr/local/bin v1.28.1
 
 cd /mnt
 rm -rf go
