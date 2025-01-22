@@ -1,45 +1,18 @@
 #!/bin/sh
 
-pacman -Syu --noconfirm
-
-pacman -S --noconfirm go
-pacman -S --noconfirm mysql
-pacman -S --noconfirm npm
-pacman -S --noconfirm flex
-pacman -S --noconfirm bison
-pacman -S --noconfirm protobuf
-
-pacman -Scc --noconfirm
-
-npm install -g gitbook-cli
+pacman -Syu --disable-sandbox --noconfirm
+pacman -Sy --disable-sandbox --noconfirm go
+su yay -s /bin/bash -c 'yay -Sy --noconfirm python-epc python-orjson python-sexpdata python-six python-setuptools python-paramiko python-rapidfuzz python-watchdog python-packaging'
+pacman -Scc --disable-sandbox --noconfirm
 
 go version
+go install golang.org/x/tools/gopls@latest
+cp -f /root/go/bin/* /usr/local/bin/
 
-cd /mnt
-mkdir /mnt/go
-cd /mnt/go
-export GOPATH=`pwd`
-
-go get -u -v github.com/nsf/gocode
-go get -u -v github.com/rogpeppe/godef
-go get -u -v golang.org/x/tools/cmd/guru
-go get -u -v golang.org/x/tools/cmd/gorename
-go get -u -v golang.org/x/tools/cmd/goimports
-go get -u -v github.com/fatih/gomodifytags
-go get -u -v golang.org/x/tools/cmd/godoc
-go get -u -v github.com/k0kubun/pp
-go get -u -v github.com/motemen/gore/cmd/gore
-go get -u -v golang.org/x/tools/gopls
-
-cp bin/* /usr/local/bin/
-
-curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /usr/local/bin v1.28.1
-
-cd /mnt
-rm -rf go
 rm -rf ~/.cache
 
 curl -o /root/.emacs.d/custom/awesome-tab.el https://raw.githubusercontent.com/manateelazycat/awesome-tab/master/awesome-tab.el
+git clone --depth=1 https://github.com/manateelazycat/lsp-bridge.git /root/.emacs.d/custom/lsp-bridge
 
 emacs --daemon
 emacsclient -e '(kill-emacs)'

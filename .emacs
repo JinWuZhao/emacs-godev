@@ -5,14 +5,9 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (ace-jump-mode youdao-dictionary emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save company-restclient restclient zoom-window neotree f zoom highlight-parentheses flycheck-golangci-lint flycheck markdown-mode counsel yasnippet-snippets eglot go-mode ace-window magit)))
- '(zoom-size (quote (0.618 . 0.618))))
+   '(ace-jump-mode emojify pyim xclip color-theme-modern solarized-theme spacemacs-theme monokai-theme dracula-theme smex protobuf-mode real-auto-save zoom-window neotree zoom highlight-parentheses flycheck markdown-mode counsel yasnippet-snippets go-mode ace-window magit))
+ '(zoom-size '(0.618 . 0.618)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -44,6 +39,7 @@ re-downloaded in order to locate PACKAGE."
 (require-packages package-selected-packages)
 
 (add-to-list 'load-path (expand-file-name (locate-user-emacs-file "custom")))
+(add-to-list 'load-path (expand-file-name (locate-user-emacs-file "custom/lsp-bridge")))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
@@ -81,8 +77,8 @@ re-downloaded in order to locate PACKAGE."
   nil)
 
 (require 'pyim)
-(require 'pyim-basedict)
-(pyim-basedict-enable)
+;;(require 'pyim-basedict)
+;;(pyim-basedict-enable)
 (setq default-input-method "pyim")
 
 (display-time)
@@ -154,9 +150,6 @@ re-downloaded in order to locate PACKAGE."
 
 (global-set-key (kbd "C-c o") 'project-find-file)
 
-(require 'youdao-dictionary)
-(global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point)
-
 (require 'yasnippet)
 (yas-global-mode 1)
 
@@ -185,47 +178,6 @@ re-downloaded in order to locate PACKAGE."
 (require 'bookmark)
 (setq bookmark-default-file "/mnt/share/Documents/.bookmark")
 
-(require 'company-restclient)
-(push 'company-restclient company-backends)
-(add-hook 'restclient-mode-hook #'company-mode-on)
-
-(setq company-show-numbers t)
-
-(require 'f)
-(require 'subr-x)
-;; load gopath config file
-(defun go-gopath-load (name)
-  (interactive
-   (let ((gopath-file ".gopath"))
-     (list
-      (read-file-name (format "GOPATH config file:(default '%s') " gopath-file)
-                      default-directory gopath-file nil gopath-file))))
-  (let ((filename (if name name (concat default-directory ".gopath"))))
-    (if (f-exists? filename)
-        (let ((contents (f-read-text filename 'utf-8)))
-          (setenv "GOPATH" (string-trim-right (shell-command-to-string (concat "echo " contents)) "\n")))
-      nil))
-  nil)
-;; save gopath config file
-(defun go-gopath-save (name)
-  (interactive
-   (let ((gopath-file ".gopath"))
-     (list
-      (read-file-name (format "GOPATH config file:(default '%s') " gopath-file)
-                      default-directory gopath-file nil gopath-file))))
-  (let ((filename (if name name (concat default-directory ".gopath")))
-        (gopath (getenv "GOPATH")))
-    (if gopath
-        (f-write-text gopath 'utf-8 filename)
-      (message "the environment 'GOPATH' is empty")))
-  nil)
-;; autoload gopath
-(defun go-gopath-autoload ()
-  (interactive)
-  (go-gopath-load nil))
-
-(add-hook 'dired-mode-hook #'go-gopath-autoload)
-
 (require 'go-mode)
 (set-variable 'gofmt-command "goimports")
 
@@ -235,9 +187,5 @@ re-downloaded in order to locate PACKAGE."
     (gofmt)))
 (global-set-key (kbd "C-c f") 'go-mode-fmt)
 
-(require 'eglot)
-(add-to-list 'eglot-server-programs '(go-mode . ("gopls")))
-(define-key eglot-mode-map (kbd "C-c d") 'eglot-help-at-point)
-(add-hook 'go-mode-hook #'eglot-ensure)
-
-(add-hook 'go-mode-hook #'company-mode-on)
+(require 'lsp-bridge)
+(global-lsp-bridge-mode)
