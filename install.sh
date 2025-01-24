@@ -7,6 +7,7 @@ pacman -Scc --disable-sandbox --noconfirm
 
 go version
 go install golang.org/x/tools/gopls@latest
+go install golang.org/x/tools/cmd/goimports@latest
 cp -f /root/go/bin/* /usr/local/bin/
 
 rm -rf ~/.cache
