@@ -189,10 +189,12 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'lsp-bridge)
 (global-lsp-bridge-mode)
+(set-variable 'lsp-bridge-complete-manually t)
 
 (add-hook 'go-mode-hook
   (lambda ()
     (progn (keymap-local-set "C-c f" 'go-mode-fmt)
+           (keymap-local-set "C-M-i" 'lsp-bridge-popup-complete-menu)
            (keymap-local-set "M-." 'lsp-bridge-peek)
            (keymap-local-set "C-." 'lsp-bridge-find-def-other-window)
            (keymap-local-set "C-c M-i" 'lsp-bridge-find-impl-other-window)
