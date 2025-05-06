@@ -69,8 +69,7 @@ re-downloaded in order to locate PACKAGE."
      (font-spec :name "-ADBO-Source Han Sans CN-light-normal-normal-*-*-*-*-*-*-0-iso10646-1"
                 :weight 'normal
                 :slant 'normal
-                :size 13.5)))
-  (global-emojify-mode))
+                :size 13.5))))
 
 (if window-system
     (gui-setup)
